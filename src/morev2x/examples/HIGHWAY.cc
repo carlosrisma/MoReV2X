@@ -9,7 +9,7 @@
 #include <ns3/mobility-module.h>
 #include <ns3/network-module.h>
 #include <ns3/nist-lte-helper.h>
-#include <ns3/MoReV2X-module.h>
+#include <ns3/morev2x-module.h>
 #include "ns3/nist-sl-resource-pool-factory.h"
 #include "ns3/nist-sl-preconfig-pool-factory.h"
 #include "ns3/delay-jitter-estimation.h"

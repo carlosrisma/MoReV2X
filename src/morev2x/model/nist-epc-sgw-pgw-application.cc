@@ -27,6 +27,7 @@
 #include "ns3/inet-socket-address.h"
 #include "ns3/nist-epc-gtpu-header.h"
 #include "ns3/abort.h"
+#include "ns3/socket.h"
 
 namespace ns3 {
 
@@ -184,8 +185,9 @@ NistEpcSgwPgwApplication::RecvFromS1uSocket (Ptr<Socket> socket)
 
   /// \internal
   /// Workaround for \bugid{231}
-  SocketAddressTag tag;
-  packet->RemovePacketTag (tag);
+  //TODO understand how to replace the no longer existant (from ns-3.26) SocketAddressTag
+  //SocketAddressTag tag;
+  //packet->RemovePacketTag (tag);
 
   SendToTunDevice (packet, teid);
 }
