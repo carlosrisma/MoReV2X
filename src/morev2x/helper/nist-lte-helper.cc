@@ -722,14 +722,18 @@ NistLteHelper::DoCalcRsrp (Ptr<PropagationLossModel> propagationLoss, Ptr<Spectr
   Ptr<MobilityModel> rxMobility = rxPhy->GetMobility ();
 
   double pathLossDb = 0;
-  if (txPhy->GetRxAntenna() != 0)
-    {
+  Ptr<AntennaModel> txAntenna = txPhy->GetAntenna ()->GetObject<AntennaModel>();
+  //if (txPhy->GetRxAntenna() != 0)
+  if (txAntenna != 0)
+  {
       Angles txAngles (rxMobility->GetPosition (), txMobility->GetPosition ());
-      double txAntennaGain = txPhy->GetRxAntenna()->GetGainDb (txAngles);
+      //double txAntennaGain = txPhy->GetRxAntenna()->GetGainDb (txAngles);
+      double txAntennaGain = txAntenna->GetGainDb (txAngles);
       NS_LOG_DEBUG ("txAntennaGain = " << txAntennaGain << " dB");
       pathLossDb -= txAntennaGain;
     }
-  Ptr<AntennaModel> rxAntenna = rxPhy->GetRxAntenna ();
+  //Ptr<AntennaModel> rxAntenna = rxPhy->GetRxAntenna ();
+  Ptr<AntennaModel> rxAntenna = rxPhy->GetAntenna ()->GetObject<AntennaModel>();
   if (rxAntenna != 0)
     {
       Angles rxAngles (txMobility->GetPosition (), rxMobility->GetPosition ());
@@ -742,7 +746,7 @@ NistLteHelper::DoCalcRsrp (Ptr<PropagationLossModel> propagationLoss, Ptr<Spectr
       double propagationGainDb = propagationLoss->CalcRxPower (0, txMobility, rxMobility);
       NS_LOG_DEBUG ("propagationGainDb = " << propagationGainDb << " dB");
       pathLossDb -= propagationGainDb;
-    }                    
+    }
   NS_LOG_DEBUG ("total pathLoss = " << pathLossDb << " dB");  
 
   double pathGainLinear = std::pow (10.0, (-pathLossDb) / 10.0);
@@ -795,14 +799,18 @@ NistLteHelper::DoCalcRsrp (Ptr<PropagationLossModel> propagationLoss, double txP
   Ptr<MobilityModel> rxMobility = rxPhy->GetMobility ();
 
   double pathLossDb = 0;
-  if (txPhy->GetRxAntenna() != 0)
-    {
+  Ptr<AntennaModel> txAntenna = txPhy->GetAntenna ()->GetObject<AntennaModel>();
+  //if (txPhy->GetRxAntenna() != 0)
+  if (txAntenna != 0)
+  {
       Angles txAngles (rxMobility->GetPosition (), txMobility->GetPosition ());
-      double txAntennaGain = txPhy->GetRxAntenna()->GetGainDb (txAngles);
+      //double txAntennaGain = txPhy->GetRxAntenna()->GetGainDb (txAngles);
+      double txAntennaGain = txAntenna->GetGainDb (txAngles);
       NS_LOG_DEBUG ("txAntennaGain = " << txAntennaGain << " dB");
       pathLossDb -= txAntennaGain;
     }
-  Ptr<AntennaModel> rxAntenna = rxPhy->GetRxAntenna ();
+  //Ptr<AntennaModel> rxAntenna = rxPhy->GetRxAntenna ();
+  Ptr<AntennaModel> rxAntenna = rxPhy->GetAntenna ()->GetObject<AntennaModel>();
   if (rxAntenna != 0)
     {
       Angles rxAngles (txMobility->GetPosition (), rxMobility->GetPosition ());

@@ -381,17 +381,17 @@ NrV2XSpectrumPhy::GetTypeId (void)
 
 
 Ptr<NetDevice>
-NrV2XSpectrumPhy::GetDevice ()
+NrV2XSpectrumPhy::GetDevice () const
 {
-  //NS_LOG_FUNCTION (this);
+  NS_LOG_FUNCTION (this);
   return m_device;
 }
 
 
 Ptr<MobilityModel>
-NrV2XSpectrumPhy::GetMobility ()
+NrV2XSpectrumPhy::GetMobility () const
 {
-  //NS_LOG_FUNCTION (this);
+  NS_LOG_FUNCTION (this);
   return m_mobility;
 }
 
@@ -565,6 +565,12 @@ NrV2XSpectrumPhy::SetNistLtePhyUlHarqFeedbackCallback (NistLtePhyUlHarqFeedbackC
 
 
 Ptr<AntennaModel> NrV2XSpectrumPhy::GetRxAntenna ()
+{
+  return m_antenna;
+}
+
+Ptr<Object>
+NrV2XSpectrumPhy::GetAntenna () const
 {
   return m_antenna;
 }
